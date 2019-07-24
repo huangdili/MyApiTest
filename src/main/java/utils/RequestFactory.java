@@ -4,10 +4,10 @@ import net.sf.json.JSONObject;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import static utils.LogbackUtil.LOGGER;
+
 
 public class RequestFactory {
 
@@ -16,6 +16,7 @@ public class RequestFactory {
         if(bizParams == null){
             throw new FrameworkException("传入参数为空");
         }
+
         //传入的map参数转换json
         JSONObject jsonObject = JSONObject.fromObject(bizParams);
         parameters = jsonObject.toString();
@@ -30,7 +31,7 @@ public class RequestFactory {
                 .url(url)
                 .post(requestBody)
                 .build();
-
+        LOGGER.info(request.toString());
         OkHttpClient okHttpClient = new OkHttpClient();
         Response response = okHttpClient.newCall(request).execute();
 
