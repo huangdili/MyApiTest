@@ -27,7 +27,7 @@ public class GetNextAreaTest {
         //构造请求参数
         map.put("areaId",areaId);
         //调用接口
-        Response response = RequestFactory.postRequest_Json(url,map);
+        Response response = RequestFactory.postRequest_Form(url,map);
         //校验response.code
         Assert.assertEquals(Integer.valueOf(expectedCode),Integer.valueOf(response.code()));
         //校验returnCode

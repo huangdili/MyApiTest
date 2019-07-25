@@ -21,13 +21,11 @@ public class AssertUtil {
      */
 
     public static boolean isDataExist(JSONArray data, String key, String value) throws FrameworkException {
-        LOGGER.info("共有"+ data.size() + "条数据");
         if(data.size()>0) {
             for (int i = 0; i < data.size(); i++) {
                 JSONObject jsonObject = data.getJSONObject(i);
                 String actualValue = jsonObject.getString(key);
 
-                //LOGGER.info(actualValue);
                 if(actualValue.equalsIgnoreCase(value)){
                     return true;
                 }

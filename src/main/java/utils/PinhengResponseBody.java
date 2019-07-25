@@ -14,6 +14,7 @@ public class PinhengResponseBody {
     private static String message;
     private static Object resultData;
     private static String time;
+    private static Integer resultCount;
 
     public PinhengResponseBody(Response response) throws FrameworkException, IOException {
         if (null != response) {
@@ -36,6 +37,10 @@ public class PinhengResponseBody {
             //设置time
             String actualTime = jsonObject.get("time").toString();
             setMessage(actualTime);
+
+            //设置resultCount
+            int actualResultCount = JSONArray.fromObject(resultData).size();
+            setResultCount(actualResultCount);
 
         }else{
             throw new FrameworkException("response为空");
@@ -72,5 +77,13 @@ public class PinhengResponseBody {
 
     public static void setTime(String time) {
         PinhengResponseBody.time = time;
+    }
+
+    public static Integer getResultCount() {
+        return resultCount;
+    }
+
+    public static void setResultCount(Integer resultCount) {
+        PinhengResponseBody.resultCount = resultCount;
     }
 }
