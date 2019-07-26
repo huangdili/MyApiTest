@@ -49,6 +49,26 @@ public class RequestFactory {
         return response;
     }
 
+
+    public static  Response getRequest(String url, Map<String,Object> bizParams) throws FrameworkException, IOException {
+
+        checkParameters(url,bizParams);
+
+        HttpUrl httpUrl = HttpRequestUrlAppendUtil.appendGetUrl(url,bizParams);
+
+        LOGGER.info(httpUrl.toString());
+
+        Request request = new Request.Builder()
+                .url(httpUrl)
+                .get()
+                .build();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Response response = okHttpClient.newCall(request).execute();
+
+        return response;
+
+    }
+
     private static void checkParameters(String url, Map<String,Object> bizParams) throws FrameworkException {
 
         if(bizParams == null){

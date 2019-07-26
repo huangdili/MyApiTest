@@ -44,7 +44,7 @@ public class GetNextAreaByParamsTest {
         //调用接口
         Response response = RequestFactory.postRequest_Form(url,map);
         //校验response.code
-        Assert.assertEquals(Integer.valueOf(expectedCode),Integer.valueOf(response.code()));
+        Assert.assertEquals(Integer.valueOf(response.code()),Integer.valueOf(expectedCode));
         //校验returnCode
         PinhengResponseBody pinhengResponseBody = new PinhengResponseBody(response);
 
