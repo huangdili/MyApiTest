@@ -14,7 +14,7 @@ public class PinhengResponseBody {
     private static String message;
     private static Object resultData;
     private static String time;
-    private static Integer resultCount;
+    private static int resultCount;
 
     public PinhengResponseBody(Response response) throws FrameworkException, IOException {
         if (null != response) {
@@ -31,16 +31,20 @@ public class PinhengResponseBody {
             setMessage(actualMessage);
 
             //设置resultData
-            Object resultData = jsonObject.get("resultData");
-            setResultData(resultData);
+            Object actualResultData = jsonObject.get("resultData");
+            setResultData(actualResultData);
 
             //设置time
             String actualTime = jsonObject.get("time").toString();
-            setMessage(actualTime);
+            setTime(actualTime);
 
             //设置resultCount
-            int actualResultCount = JSONArray.fromObject(resultData).size();
-            setResultCount(actualResultCount);
+            if (actualResultData.equals("null")) {
+                setResultCount(0);
+            } else {
+                int actualResultCount = JSONArray.fromObject(actualResultData).size();
+                setResultCount(actualResultCount);
+            }
 
         }else{
             throw new FrameworkException("response为空");
@@ -51,39 +55,39 @@ public class PinhengResponseBody {
         return returnCode;
     }
 
-    public static void setReturnCode(int returnCode) {
-        PinhengResponseBody.returnCode = returnCode;
+    public static void setReturnCode(int actualReturnCode) {
+        returnCode = actualReturnCode;
     }
 
     public static String getMessage() {
         return message;
     }
 
-    public static void setMessage(String message) {
-        PinhengResponseBody.message = message;
+    public static void setMessage(String actualMessage) {
+        message = actualMessage;
     }
 
     public static Object getResultData() {
         return resultData;
     }
 
-    public static void setResultData(Object resultData) {
-        PinhengResponseBody.resultData = resultData;
+    public static void setResultData(Object actualResultData) {
+        resultData = actualResultData;
     }
 
     public static String getTime() {
         return time;
     }
 
-    public static void setTime(String time) {
-        PinhengResponseBody.time = time;
+    public static void setTime(String actualTime) {
+        time = actualTime;
     }
 
-    public static Integer getResultCount() {
+    public static int getResultCount() {
         return resultCount;
     }
 
-    public static void setResultCount(Integer resultCount) {
-        PinhengResponseBody.resultCount = resultCount;
+    public static void setResultCount(Integer actualResultCount) {
+        resultCount = actualResultCount;
     }
 }

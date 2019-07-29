@@ -53,7 +53,7 @@ public class GetNextAreaByParamsTest {
 
         Assert.assertTrue(AssertUtil.isDataExist(JSONArray.fromObject(pinhengResponseBody.getResultData()),"parentId",parentId));
 
-        Assert.assertEquals(pinhengResponseBody.getResultCount(),Integer.valueOf(expectedCount));
+        Assert.assertEquals(pinhengResponseBody.getResultCount(),Integer.parseInt(expectedCount));
 
     }
 
