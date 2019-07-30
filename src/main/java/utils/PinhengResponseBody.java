@@ -10,11 +10,11 @@ import static utils.LogbackUtil.LOGGER;
 
 public class PinhengResponseBody {
 
-    private static int returnCode;
-    private static String message;
-    private static Object resultData;
-    private static String time;
-    private static int resultCount;
+    private int returnCode;
+    private String message;
+    private Object resultData;
+    private String time;
+    private int resultCount;
 
     public PinhengResponseBody(Response response) throws FrameworkException, IOException {
         if (null != response) {
@@ -51,43 +51,43 @@ public class PinhengResponseBody {
         }
     }
 
-    public static int getReturnCode() {
-        return returnCode;
+    public int getReturnCode() {
+        return this.returnCode;
     }
 
-    public static void setReturnCode(int actualReturnCode) {
-        returnCode = actualReturnCode;
+    public void setReturnCode(int actualReturnCode) {
+        this.returnCode = actualReturnCode;
     }
 
-    public static String getMessage() {
-        return message;
+    public String getMessage() {
+        return this.message;
     }
 
-    public static void setMessage(String actualMessage) {
-        message = actualMessage;
+    public void setMessage(String actualMessage) {
+        this.message = actualMessage;
     }
 
-    public static Object getResultData() {
-        return resultData;
+    public Object getResultData() {
+        return this.resultData;
     }
 
-    public static void setResultData(Object actualResultData) {
-        resultData = actualResultData;
+    public void setResultData(Object actualResultData) {
+        this.resultData = actualResultData;
     }
 
-    public static String getTime() {
-        return time;
+    public String getTime() {
+        return this.time;
     }
 
-    public static void setTime(String actualTime) {
-        time = actualTime;
+    public void setTime(String actualTime) {
+       this.time = actualTime;
     }
 
-    public static int getResultCount() {
-        return resultCount;
+    public int getResultCount() {
+        return this.resultCount;
     }
 
-    public static void setResultCount(Integer actualResultCount) {
-        resultCount = actualResultCount;
+    public void setResultCount(Integer actualResultCount) {
+       this.resultCount = actualResultCount;
     }
 }

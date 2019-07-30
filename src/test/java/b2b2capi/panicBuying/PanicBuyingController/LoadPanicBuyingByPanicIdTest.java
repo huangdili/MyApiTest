@@ -10,15 +10,12 @@ import utils.*;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import static utils.LogbackUtil.LOGGER;
 
 public class LoadPanicBuyingByPanicIdTest {
 
     @Test(dataProvider = "loadPanicBuyingByPanicIdCsv")
-    public void loadPanicBuyingByPanicIdTest(String panicId,String expectedCode,String resultCount) throws IOException, FrameworkException {
+    public void loadPanicBuyingByPanicIdTest(String panicId,String expectedCode,String expectedReturnCode,String expectedMessage,String expectedResultData,String resultCount) throws IOException, FrameworkException {
 
         String url = HttpRequestUrlAppendUtil.getHttpurl("pinhengconfig.properties","app/panicBuying/loadPanicBuyingByPanicId");
 
@@ -27,14 +24,12 @@ public class LoadPanicBuyingByPanicIdTest {
         map.put("panicId",panicId);
         //调用接口
         Response response = RequestFactory.getRequest(url,map);
-        //校验response.code
-        Assert.assertEquals(Integer.valueOf(response.code()),Integer.valueOf(expectedCode));
-        //校验returnCode
         PinhengResponseBody pinhengResponseBody = new PinhengResponseBody(response);
-        int returnCode = pinhengResponseBody.getReturnCode();
-        Assert.assertEquals(returnCode,0);
-        Assert.assertEquals(pinhengResponseBody.getMessage(),"查询结果为空");
-        Assert.assertEquals(pinhengResponseBody.getResultCount(),0);
+        AssertUtil.integerAssertEquals(response.code(),expectedCode);
+        AssertUtil.assertPinhengResponse(pinhengResponseBody,expectedReturnCode,expectedMessage,resultCount);
+        //resultData
+        Assert.assertEquals(pinhengResponseBody.getResultData().toString(),expectedResultData);
+
 
     }
 

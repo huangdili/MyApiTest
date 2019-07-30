@@ -1,2 +1,2 @@
-标题,panicId,预期值,预期返回条数
-查询存在的区域，返回响应区域信息,10,200,0
+标题,panicId,预期值,returnCode,message,resultData,resultCount
+查询不存在的panicId，返回响应区域信息,10,200,0,查询结果为空,null,0
