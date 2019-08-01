@@ -1,4 +1,4 @@
-package b2b2capi.panicBuying.PanicBuyingController;
+package ${packageDir};
 
 import okhttp3.Response;
 import org.testng.Assert;
@@ -13,22 +13,22 @@ import java.util.Map;
 
 import static org.testng.Assert.assertTrue;
 
-public class LoadPanicBuyingByProductIdTest {
+public class ${className}{
     String url;
     @BeforeTest
     public void init(){
-        url = HttpRequestUrlAppendUtil.getHttpurl("pinhengconfig.properties", "app/panicBuying/loadPanicBuyingByProductId");
+        url = HttpRequestUrlAppendUtil.getHttpurl("pinhengconfig.properties", "${interfaceUrl}");
     }
 
-    @Test(dataProvider = "loadPanicBuyingByProductIdCsv")
-    public void loadPanicBuyingByProductIdTest(String productId,String expectedCode,String expectedReturnCode,
+    @Test(dataProvider = "${interface_name}Csv")
+    public void ${interface_name}Test(${input_param},String expectedCode,String expectedReturnCode,
                                                String expectedMessage,String expectedResultData,String expectedResultCount,String isRun) throws IOException, FrameworkException {
 
         if(isRun.toUpperCase().equals("Y")) {
 
             Map<String, Object> map = new HashMap<>();
             //构造请求参数
-            map.put("productId", productId);
+${map_builder}
             //调用接口
             Response response = RequestFactory.getRequest(url, map);
             //调用接口
@@ -43,9 +43,9 @@ public class LoadPanicBuyingByProductIdTest {
 
     }
 
-    @DataProvider(name = "loadPanicBuyingByProductIdCsv")
+    @DataProvider(name = "${interface_name}Csv")
     public Object[][] areaCsv(){
-        Object[][] parameters = CsvUtil.csvReader("src/test/testdatas/b2b2capi/panicBuying/PanicBuyingController/loadPanicBuyingByProductId.CSV");
+        Object[][] parameters = CsvUtil.csvReader("${csvDir}/${interface_name}.CSV");
         return parameters;
     }
 }
