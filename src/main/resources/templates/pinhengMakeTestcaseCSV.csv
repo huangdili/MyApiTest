@@ -1,0 +1,2 @@
+测试编号,	代码目录,	csv目录,	接口名称,	接口描述,	接口url,	接口参数,	isRun
+1,src/test/java/b2b2capi/panicBuying/PanicBuyingController,src/test/testdatas/b2b2capi/panicBuying/PanicBuyingController,queryPanicBuyingAllListPage,查询全部抢购分页列表信息,/app/panicBuying/queryPanicBuyingAllListPage,currentPage,Y
