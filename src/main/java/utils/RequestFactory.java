@@ -6,9 +6,6 @@ import okhttp3.*;
 import java.io.IOException;
 import java.util.Map;
 
-import static utils.LogbackUtil.LOGGER;
-
-
 public class RequestFactory {
 
     public static  Response postRequest_Json(String url, Map<String,Object> bizParams) throws FrameworkException, IOException {
@@ -56,7 +53,7 @@ public class RequestFactory {
 
         HttpUrl httpUrl = HttpRequestUrlAppendUtil.appendGetUrl(url,bizParams);
 
-        LOGGER.info(httpUrl.toString());
+        LogbackUtil.info(httpUrl.toString());
 
         Request request = new Request.Builder()
                 .url(httpUrl)
@@ -88,7 +85,7 @@ public class RequestFactory {
                 .post(requestBody)
                 .build();
 
-        LOGGER.info(request.toString());
+        LogbackUtil.info(request.toString());
         //调用参数
         OkHttpClient okHttpClient = new OkHttpClient();
         Response response = okHttpClient.newCall(request).execute();

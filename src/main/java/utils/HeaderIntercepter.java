@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
-import static utils.LogbackUtil.LOGGER;
-
 /**
  * @author  huangdili
  * 暂时没有使用上
@@ -26,10 +24,10 @@ public class HeaderIntercepter implements Interceptor {
         Request request = chain.request();
 
         long beginTime = System.nanoTime();
-        LOGGER.info(String.format("Sending request %s on %s%n%s", request.url(),chain.connection(),request.headers()));
+        LogbackUtil.info(String.format("Sending request %s on %s%n%s", request.url(),chain.connection(),request.headers()));
         Response response = chain.proceed(request);
         long endTime = System.nanoTime();
-        LOGGER.info(String.format("Received response for %s in %.1fms%n%s",
+        LogbackUtil.info(String.format("Received response for %s in %.1fms%n%s",
                 response.request().url(),(endTime-beginTime)/1e6d,response.headers()));
         return response;
 
@@ -48,7 +46,7 @@ public class HeaderIntercepter implements Interceptor {
                 .build();
 
         Response response = client.newCall(request).execute();
-        LOGGER.info(response.body().toString());
+        LogbackUtil.info(response.body().toString());
         response.body().close();
 
     }

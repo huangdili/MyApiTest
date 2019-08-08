@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static utils.LogbackUtil.LOGGER;
 
 
 public class GetNextAreaByParamsTest {
@@ -39,7 +38,6 @@ public class GetNextAreaByParamsTest {
         map.put("parentId",parentId);
         map.put("levelCode",levelCode);
 
-        LOGGER.info(map.toString());
 
         //调用接口
         Response response = RequestFactory.postRequest_Form(url,map);

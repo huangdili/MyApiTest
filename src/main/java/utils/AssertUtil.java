@@ -6,8 +6,8 @@ import okhttp3.Response;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.util.List;
 
-import static utils.LogbackUtil.LOGGER;
 
 /**
  * @author huangdili
@@ -27,9 +27,9 @@ public class AssertUtil {
 
     public static void assertPinhengResponse(PinhengResponseBody pinhengResponseBody,String expectedReturnCode, String expectedMessage,String expectedResultCount) throws IOException, FrameworkException {
 
-        AssertUtil.integerAssertEquals( pinhengResponseBody.getReturnCode(),expectedReturnCode);
-        Assert.assertEquals(pinhengResponseBody.getMessage(),expectedMessage);
-        AssertUtil.integerAssertEquals(pinhengResponseBody.getResultCount(),expectedResultCount);
+            AssertUtil.integerAssertEquals(pinhengResponseBody.getReturnCode(), expectedReturnCode);
+            Assert.assertEquals(pinhengResponseBody.getMessage(), expectedMessage);
+            AssertUtil.integerAssertEquals(pinhengResponseBody.getResultCount(), expectedResultCount);
 
     }
 
@@ -61,5 +61,34 @@ public class AssertUtil {
 
     public static  void integerAssertEquals(Object actulaObject,String expectedObject){
         Assert.assertEquals(Integer.valueOf(actulaObject.toString()),Integer.valueOf(expectedObject));
-}
+    }
+
+    public static boolean isListEqual(List list, List listToCompare){
+        if(list == listToCompare){
+            return true;
+        }
+        if (list == null && listToCompare == null){
+            return true;
+        }
+
+        if (list == null || listToCompare == null)
+            return false;
+        if (list.size() != listToCompare.size()){
+            return false;
+        }
+
+        for (Object o : list) {
+            if (!listToCompare.contains(o)){
+                return false;
+            }
+
+        }
+        for (Object o : listToCompare) {
+            if(!list.contains(o)){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

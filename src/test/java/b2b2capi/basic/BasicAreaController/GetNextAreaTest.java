@@ -1,20 +1,31 @@
 package b2b2capi.basic.BasicAreaController;
 import net.sf.json.JSONArray;
 import okhttp3.Response;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pinheng.Dao.BasicAreaDoMapper;
 import utils.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GetNextAreaTest {
+
     @BeforeClass
     public void init(){
-
 
     }
 
@@ -36,6 +47,13 @@ public class GetNextAreaTest {
         Assert.assertEquals(1,returnCode);
 
         Assert.assertTrue(AssertUtil.isDataExist(JSONArray.fromObject(pinhengResponseBody.getResultData()),"areaId","1"));
+
+        String resource = "mybatis-config.xml";
+        SqlSession sqlSession = SqlUtils.getSqlSession(resource);
+        BasicAreaDoMapper basicAreaDoMapper = sqlSession.getMapper(BasicAreaDoMapper.class);
+        List<Map<String,Object>> queryMap = basicAreaDoMapper.getNextArea(Integer.valueOf(areaId));
+        LogbackUtil.info(queryMap.toString());
+        sqlSession.close();
 
     }
 

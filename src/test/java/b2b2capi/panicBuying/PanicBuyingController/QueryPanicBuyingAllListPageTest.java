@@ -40,6 +40,7 @@ public class QueryPanicBuyingAllListPageTest{
             Assert.assertEquals(pinhengResponseBody.getResultData().toString(), expectedResultData);
         }else {
             assertTrue(false,title+"isRUN为N，未运行");
+
         }
 
     }

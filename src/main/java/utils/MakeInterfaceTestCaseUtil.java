@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import static org.testng.Assert.assertTrue;
-import static utils.LogbackUtil.LOGGER;
 
 /**
  * @author huangdili
@@ -45,7 +44,6 @@ public class MakeInterfaceTestCaseUtil {
             StringBuffer classNameBuffer = new StringBuffer();
             String className = classNameBuffer.append(Character.toUpperCase(interface_name.charAt(0)))
                     .append(interface_name.substring(1)).append("Test").toString();
-            LOGGER.info(className);
             String input_param = "";
             String map_builder = "";
             /**
@@ -72,8 +70,6 @@ public class MakeInterfaceTestCaseUtil {
                     stringBuffer.deleteCharAt(stringBuffer.length()-1);
                     input_param = stringBuffer.toString();
                     map_builder = mapStringBuffer.toString();
-                    LOGGER.info(input_param);
-                    LOGGER.info(map_builder);
                 }
             }
             map.put("interface_name",interface_name);
@@ -91,29 +87,11 @@ public class MakeInterfaceTestCaseUtil {
             //设置模板
             Template sourceTemplate = configuration.getTemplate(templateFile);
             //调用函数生成用例
-            MakeInterfaceTestCaseUtil.build(map,sourceSavePath,sourceFileName,sourceTemplate);
+            BuildFileUtils.build(map,sourceSavePath,sourceFileName,sourceTemplate);
 
         }else {//isRun为N，不执行自动生成
             assertTrue(false,"isRUN为N，未运行");
         }
-    }
-
-    public static void build(Map<String,String> map,String sourceSavePath,String sourceFileName,Template sourceTempalte) throws IOException {
-        String filename = sourceSavePath + sourceFileName;
-        LOGGER.info(filename);
-        File directory = new File(sourceSavePath);
-        if(!directory.exists()){
-            directory.mkdir();
-        }
-        File file = new File(sourceSavePath);
-        file.createNewFile();
-        try{
-            Writer writer = new OutputStreamWriter(new FileOutputStream(filename));
-            sourceTempalte.process(map,writer);
-        } catch (TemplateException e) {
-            e.printStackTrace();
-        }
-
     }
 
     @DataProvider(name = "parameters")

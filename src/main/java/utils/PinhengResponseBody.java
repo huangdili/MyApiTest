@@ -1,12 +1,11 @@
 package utils;
 
+import meta.LogType;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import okhttp3.Response;
 
 import java.io.IOException;
-
-import static utils.LogbackUtil.LOGGER;
 
 public class PinhengResponseBody {
 
@@ -19,7 +18,8 @@ public class PinhengResponseBody {
     public PinhengResponseBody(Response response) throws FrameworkException, IOException {
         if (null != response) {
             String json = response.body().string();
-            LOGGER.info("返回的响应消息为" + json);
+            LogbackUtil.trace(PinhengResponseBody.class,LogType.BIZ,json);
+            LogbackUtil.info("返回的响应消息为" + json);
             JSONObject jsonObject = JSONObject.fromObject(json);
 
             //设置returnCode

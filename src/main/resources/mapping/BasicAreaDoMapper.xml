@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "pinheng.Dao.BasicAreaDoMapper">
+    <!-- 通过areaId查询对应的父Id查询出下一级地区 -->
+    <select id="getNextArea" resultType="map" parameterType="int">
+		select areaId,name from basic_area where parentId=#{areaId} AND isShow=1
+	</select>
+</mapper>

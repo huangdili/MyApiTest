@@ -3,7 +3,7 @@ package pinheng.Do;
 import java.io.Serializable;
 import java.util.Date;
 
-public class BasicArea implements Serializable {
+public class BasicAreaDo implements Serializable {
 
     private static final long serialVersionUID = 4541283507176084987L;
 

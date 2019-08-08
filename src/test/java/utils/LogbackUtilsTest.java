@@ -5,14 +5,12 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static utils.LogbackUtil.LOGGER;
 import static org.testng.Assert.*;
 
 public class LogbackUtilsTest {
 
     @Test(dataProvider = "LoggerFile")
     public void logbackUtilsTest(String inputString, String expectedString){
-        LOGGER.info(inputString);
         assertTrue(true);
     }
 

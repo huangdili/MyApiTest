@@ -1,14 +1,9 @@
 package utils;
 
 import okhttp3.HttpUrl;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-
-import static utils.LogbackUtil.LOGGER;
 
 
 public class HttpRequestUrlAppendUtil {
@@ -18,7 +13,7 @@ public class HttpRequestUrlAppendUtil {
             Properties properties = PropertiesFileReader.readProperties(filePath);
             String serverUrl = properties.getProperty("server.url");
             httpUrl= serverUrl + appendUrl;
-            LOGGER.info(httpUrl);
+            LogbackUtil.info(httpUrl);
             return httpUrl;
       }
 
