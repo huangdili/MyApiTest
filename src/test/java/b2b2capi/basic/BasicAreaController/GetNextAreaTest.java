@@ -53,6 +53,9 @@ public class GetNextAreaTest {
         BasicAreaDoMapper basicAreaDoMapper = sqlSession.getMapper(BasicAreaDoMapper.class);
         List<Map<String,Object>> queryMap = basicAreaDoMapper.getNextArea(Integer.valueOf(areaId));
         LogbackUtil.info(queryMap.toString());
+        List<Map<String,Object>> resultData = (List<Map<String,Object>>)pinhengResponseBody.getResultData();
+        Assert.assertTrue(AssertUtil.isListEqual(queryMap,resultData));
+        LogbackUtil.info(queryMap.toString());
         sqlSession.close();
 
     }
